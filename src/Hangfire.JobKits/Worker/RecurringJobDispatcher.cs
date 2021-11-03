@@ -52,8 +52,13 @@ namespace Hangfire.JobKits.Worker
                 var timeZone = Options.RecurringTimeZone ?? TimeZoneInfo.Local;
 
                 var parameters = await StandbyHelper.CreateParameters(context, standbyJob.Method);
+                var jobOptions = new RecurringJobOptions()
+                {
+                    TimeZone = timeZone,
+                    QueueName = queuedState.Queue
+                };
                 
-                context.GetRecurringJobManager().AddOrUpdate(standbyJob.RecurringJobId, new Job(standbyJob.Method, parameters), cron, timeZone);
+                context.GetRecurringJobManager().AddOrUpdate(jobId, new Job(standbyJob.Method, parameters), cron, jobOptions) ;
                 context.Response.StatusCode = 200;
 
             }

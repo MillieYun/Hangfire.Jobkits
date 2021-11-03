@@ -18,11 +18,11 @@ namespace Hangfire.JobKits.Worker
         public MethodInfo Method { get; }
         public string ActionName { get; }
         public bool IsAppendMachineNameToJobId { get; }
-        public string MachineName { get => Environment.MachineName; }
+        public string MachineName { get => JobKitMachineInfo.Name; }
 
         public StandbyJob(
-            JobLauncherAttribute launcherAttribute, 
-            JobMethodAttribute methodAttribute, 
+            JobLauncherAttribute launcherAttribute,
+            JobMethodAttribute methodAttribute,
             MethodInfo method)
         {
             Id = GenerateId(method);
@@ -35,7 +35,7 @@ namespace Hangfire.JobKits.Worker
 
             RecurringJobId = methodAttribute.RecurringJobId;
             RecurringJobCron = methodAttribute.RecurringJobCron ?? "0/30 * * * *";
-            
+
             Method = method;
 
             ActionName = $"{method.DeclaringType.Name}.{method.Name}";

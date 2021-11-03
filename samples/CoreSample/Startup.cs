@@ -49,7 +49,12 @@ namespace CoreSample
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseDeveloperExceptionPage();
-            app.UseHangfireServer();
+
+            var options = new BackgroundJobServerOptions
+            {
+                Queues = new[] { JobKitMachineInfo.Name, "default" }
+            };
+            app.UseHangfireServer(options);
 
             app.UseHangfireDashboard("", new DashboardOptions
             {

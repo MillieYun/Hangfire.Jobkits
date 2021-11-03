@@ -18,7 +18,7 @@ namespace CoreSample.Jobs
             _sendProgress = sendProgress;
         }
 
-        [JobMethod(UseQueue = true, RecurringJobId = "SendMail_E01")]
+        [JobMethod(UseQueue = true, RecurringJobId = "SendMail_E01", IsAppendMachineNameToJobId = true)]
         public void Send(PerformContext context)
         {
             context.WriteLine("OK");

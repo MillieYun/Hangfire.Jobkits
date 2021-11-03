@@ -100,6 +100,8 @@ public class MailJob
 - **Name** : display name
 - **Description** : describe this method how to do
 - **UseQueue** : use queue state on background job
+- **RecurringJobId** : recurring job identifier
+- **IsAppendMachineNameToJobId** : append MachineName on RecurringJobId while you would like to excuting a job in different machine with queue
 
 ``` c#
 [JobLauncher("Report")]
@@ -130,6 +132,16 @@ if the method use to recurring job, you must be setting :
 
 - **RecurringJobId** : assign id for this method can launch on recurring job
 - **RecurringJobCron** : default reccuring job cron value
+
+if you would like excuting jobs in different machine, you could set machine name as quese in your  **BackgroundJobServer** configuration
+``` c#
+var options = new BackgroundJobServerOptions
+{
+    Queues = new[] { JobKitMachineInfo.Name, "default" }
+};
+
+app.UseHangfireServer(options);
+```
 
 ``` c#
 [JobLauncher("Report")]
