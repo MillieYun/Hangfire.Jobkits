@@ -85,6 +85,7 @@ WriteLiteral("\r\n");
     string selectedCategory = this.SelectedCategory;
     StandbyMap jobMap = this.Map;
     JobKitOptions options = this.Options;
+    List<string> queues = this.Queues;
     Layout = new LayoutPage(Strings.Standby_Title);
     var availableJobs = jobMap.JobCollection.Where(x => x.Value.CategoryName == selectedCategory).Select(x => x.Value).ToArray();
 
@@ -96,7 +97,7 @@ WriteLiteral("\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"");
 
 
             
-            #line 19 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 20 "..\..\Dashboard\StandbyPage.cshtml"
                                         Write(Url.To(JobKitRoute.Standby.CssUrl));
 
             
@@ -106,7 +107,7 @@ WriteLiteral("\" />\r\n<script type=\"text/javascript\">\r\n    var launchUrl = 
 
 
             
-            #line 21 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 22 "..\..\Dashboard\StandbyPage.cshtml"
                 Write(Url.To(JobKitRoute.Standby.LaunchUrl));
 
             
@@ -116,7 +117,7 @@ WriteLiteral("\';\r\n    var recurringUrl = \'");
 
 
             
-            #line 22 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 23 "..\..\Dashboard\StandbyPage.cshtml"
                    Write(Url.To(JobKitRoute.Standby.LaunchRecurringUrl));
 
             
@@ -126,7 +127,7 @@ WriteLiteral("\';\r\n    var idFieldName = \'");
 
 
             
-            #line 23 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 24 "..\..\Dashboard\StandbyPage.cshtml"
                   Write(StandbyKey.IdField);
 
             
@@ -136,7 +137,7 @@ WriteLiteral("\';\r\n    var jobLinkBaseUrl = \'");
 
 
             
-            #line 24 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 25 "..\..\Dashboard\StandbyPage.cshtml"
                      Write(Url.JobDetails(""));
 
             
@@ -146,7 +147,7 @@ WriteLiteral("\';\r\n    var requireConfirmation = ");
 
 
             
-            #line 25 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 26 "..\..\Dashboard\StandbyPage.cshtml"
                          Write(options.RequireConfirmation.ToString().ToLowerInvariant());
 
             
@@ -156,7 +157,7 @@ WriteLiteral(";\r\n    var messageLaunch = {\r\n        confirm: \'");
 
 
             
-            #line 27 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 28 "..\..\Dashboard\StandbyPage.cshtml"
              Write(Strings.Standby_Launch);
 
             
@@ -166,7 +167,7 @@ WriteLiteral("\',\r\n        confirmRecurring: \'");
 
 
             
-            #line 28 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 29 "..\..\Dashboard\StandbyPage.cshtml"
                       Write(Strings.Standby_LaunchRecurring);
 
             
@@ -176,7 +177,7 @@ WriteLiteral("\',\r\n        success: \'");
 
 
             
-            #line 29 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 30 "..\..\Dashboard\StandbyPage.cshtml"
              Write(Strings.Standby_Success);
 
             
@@ -186,7 +187,7 @@ WriteLiteral("\',\r\n        successRecurring: \'");
 
 
             
-            #line 30 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 31 "..\..\Dashboard\StandbyPage.cshtml"
                       Write(Strings.Standby_SuccessRecurring);
 
             
@@ -196,7 +197,7 @@ WriteLiteral("\',\r\n        failure: \'");
 
 
             
-            #line 31 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 32 "..\..\Dashboard\StandbyPage.cshtml"
              Write(Strings.Standby_Failure);
 
             
@@ -206,7 +207,7 @@ WriteLiteral("\'\r\n    };\r\n</script>\r\n<script type=\"text/javascript\" src=
 
 
             
-            #line 34 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 35 "..\..\Dashboard\StandbyPage.cshtml"
                                Write(Url.To(JobKitRoute.Standby.JsUrl));
 
             
@@ -217,7 +218,7 @@ WriteLiteral("\"></script>\r\n\r\n    <div class=\"row\">\r\n        <div class=
 
 
             
-            #line 38 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 39 "..\..\Dashboard\StandbyPage.cshtml"
        Write(SidebarControl.Render(Html, selectedCategory, jobMap));
 
             
@@ -228,7 +229,7 @@ WriteLiteral("\r\n        </div>\r\n        <div class=\"col-md-9\">\r\n        
 
 
             
-            #line 41 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 42 "..\..\Dashboard\StandbyPage.cshtml"
                                Write(selectedCategory);
 
             
@@ -238,7 +239,7 @@ WriteLiteral("</h1>\r\n");
 
 
             
-            #line 42 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 43 "..\..\Dashboard\StandbyPage.cshtml"
              foreach (var job in availableJobs)
             {
 
@@ -251,7 +252,7 @@ WriteLiteral("                <div class=\"panel panel-default\">\r\n           
 
 
             
-            #line 46 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 47 "..\..\Dashboard\StandbyPage.cshtml"
                                                                Write(job.Id);
 
             
@@ -262,7 +263,7 @@ WriteLiteral("\');\">\r\n                            <div class=\"col-sm-10\">\r
 
 
             
-            #line 49 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 50 "..\..\Dashboard\StandbyPage.cshtml"
                                Write(job.ActionName);
 
             
@@ -272,7 +273,7 @@ WriteLiteral("\r\n");
 
 
             
-            #line 50 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 51 "..\..\Dashboard\StandbyPage.cshtml"
                                      if (!string.IsNullOrEmpty(job.Name))
                                     {
 
@@ -283,7 +284,7 @@ WriteLiteral("                                        <span class=\"subtitle\">"
 
 
             
-            #line 52 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 53 "..\..\Dashboard\StandbyPage.cshtml"
                                                           Write(job.Name);
 
             
@@ -293,7 +294,7 @@ WriteLiteral("</span>\r\n");
 
 
             
-            #line 53 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 54 "..\..\Dashboard\StandbyPage.cshtml"
                                     }
 
             
@@ -305,7 +306,7 @@ WriteLiteral("                                </h4>\r\n                         
 
 
             
-            #line 57 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 58 "..\..\Dashboard\StandbyPage.cshtml"
                                                        Write(options.AlwaysCollapsed ? "glyphicon-chevron-up" : "glyphicon-chevron-down");
 
             
@@ -317,7 +318,7 @@ WriteLiteral("\" aria-hidden=\"true\"></span>\r\n                            </d
 
 
             
-            #line 62 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 63 "..\..\Dashboard\StandbyPage.cshtml"
                                        Write(options.AlwaysCollapsed ? "" : "hide");
 
             
@@ -327,7 +328,7 @@ WriteLiteral("\" id=\"");
 
 
             
-            #line 62 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 63 "..\..\Dashboard\StandbyPage.cshtml"
                                                                                     Write(job.Id);
 
             
@@ -337,7 +338,7 @@ WriteLiteral("-body\">\r\n");
 
 
             
-            #line 63 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 64 "..\..\Dashboard\StandbyPage.cshtml"
                          if (!string.IsNullOrWhiteSpace(job.Description))
                         {
 
@@ -349,7 +350,7 @@ WriteLiteral("                            <div class=\"alert alert-info\" role=\
 
 
             
-            #line 66 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 67 "..\..\Dashboard\StandbyPage.cshtml"
                            Write(job.Description);
 
             
@@ -359,7 +360,7 @@ WriteLiteral("\r\n                            </div>\r\n");
 
 
             
-            #line 68 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 69 "..\..\Dashboard\StandbyPage.cshtml"
                         }
 
             
@@ -369,7 +370,7 @@ WriteLiteral("                        <form id=\"");
 
 
             
-            #line 69 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 70 "..\..\Dashboard\StandbyPage.cshtml"
                              Write(job.Id);
 
             
@@ -379,7 +380,7 @@ WriteLiteral("\">\r\n");
 
 
             
-            #line 70 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 71 "..\..\Dashboard\StandbyPage.cshtml"
                              foreach (var parameter in job.Method.GetParameters())
                             {
                                 var control = InputControl.CreateControl(parameter, job);
@@ -394,7 +395,7 @@ WriteLiteral("                                <div class=\"form-group\">\r\n    
 
 
             
-            #line 76 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 77 "..\..\Dashboard\StandbyPage.cshtml"
                                Write(Html.RenderPartial(control));
 
             
@@ -404,7 +405,7 @@ WriteLiteral("\r\n                                </div>\r\n");
 
 
             
-            #line 78 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 79 "..\..\Dashboard\StandbyPage.cshtml"
                             }
 
             
@@ -415,7 +416,7 @@ WriteLiteral("                            <button type=\"button\" class=\"btn bt
 
 
             
-            #line 79 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 80 "..\..\Dashboard\StandbyPage.cshtml"
                                                                                                Write(job.Id);
 
             
@@ -425,7 +426,7 @@ WriteLiteral("\');return false;\">");
 
 
             
-            #line 79 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 80 "..\..\Dashboard\StandbyPage.cshtml"
                                                                                                                          Write(Strings.Button_Created);
 
             
@@ -435,7 +436,7 @@ WriteLiteral("</button>\r\n");
 
 
             
-            #line 80 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 81 "..\..\Dashboard\StandbyPage.cshtml"
                              if (job.UseQueue)
                             {
 
@@ -445,14 +446,54 @@ WriteLiteral("</button>\r\n");
 WriteLiteral(@"                                <div class=""queue-input"">
                                     <div class="" input-group"">
                                         <div class=""input-group-addon"">Queue</div>
-                                        <input type=""text"" name=""equeued_state"" class=""form-control"" />
-                                    </div>
-                                </div>
+                                        <select name=""equeued_state"" class=""form-control"">
 ");
 
 
             
-            #line 88 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 87 "..\..\Dashboard\StandbyPage.cshtml"
+                                             foreach (var queue in queues)
+                                            {
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                                                <option value=\"");
+
+
+            
+            #line 89 "..\..\Dashboard\StandbyPage.cshtml"
+                                                           Write(queue);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\">");
+
+
+            
+            #line 89 "..\..\Dashboard\StandbyPage.cshtml"
+                                                                    Write(queue.ToUpper());
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</option>\r\n");
+
+
+            
+            #line 90 "..\..\Dashboard\StandbyPage.cshtml"
+                                            }
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                                        </select>\r\n                              " +
+"      </div>\r\n                                </div>\r\n");
+
+
+            
+            #line 94 "..\..\Dashboard\StandbyPage.cshtml"
                             }
 
             
@@ -460,7 +501,7 @@ WriteLiteral(@"                                <div class=""queue-input"">
             #line hidden
 
             
-            #line 89 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 95 "..\..\Dashboard\StandbyPage.cshtml"
                              if (!string.IsNullOrEmpty(job.RecurringJobId))
                             {
 
@@ -473,7 +514,7 @@ WriteLiteral("                                <span class=\"cron-input\">\r\n   
 
 
             
-            #line 92 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 98 "..\..\Dashboard\StandbyPage.cshtml"
                                                                                                                        Write(job.RecurringJobCron);
 
             
@@ -484,7 +525,7 @@ WriteLiteral("\">\r\n                                    <button class=\"btn btn
 
 
             
-            #line 93 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 99 "..\..\Dashboard\StandbyPage.cshtml"
                                                                                                          Write(job.Id);
 
             
@@ -494,7 +535,7 @@ WriteLiteral("\');return false;\">");
 
 
             
-            #line 93 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 99 "..\..\Dashboard\StandbyPage.cshtml"
                                                                                                                                    Write(Strings.Button_Recurring);
 
             
@@ -504,7 +545,7 @@ WriteLiteral("</button>\r\n\r\n                                </span>\r\n");
 
 
             
-            #line 96 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 102 "..\..\Dashboard\StandbyPage.cshtml"
                             }
 
             
@@ -514,7 +555,7 @@ WriteLiteral("                        </form>\r\n                        <div id
 
 
             
-            #line 98 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 104 "..\..\Dashboard\StandbyPage.cshtml"
                             Write(job.Id);
 
             
@@ -525,7 +566,7 @@ WriteLiteral("-alerts\" class=\"panel-alerts\"></div>\r\n                    </d
 
 
             
-            #line 101 "..\..\Dashboard\StandbyPage.cshtml"
+            #line 107 "..\..\Dashboard\StandbyPage.cshtml"
             }
 
             

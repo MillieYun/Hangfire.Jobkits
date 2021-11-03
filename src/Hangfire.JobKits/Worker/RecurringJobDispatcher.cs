@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Hangfire.Common;
 using Hangfire.Dashboard;
+using Hangfire.States;
 
 namespace Hangfire.JobKits.Worker
 {
@@ -33,6 +34,19 @@ namespace Hangfire.JobKits.Worker
                 var key = context.Request.GetQuery(StandbyKey.IdField);
 
                 var standbyJob = Map.JobCollection[key];
+
+                var queuedState = new EnqueuedState();
+                if (standbyJob.UseQueue)
+                {
+                    var queueString = (await context.Request.GetFormValuesAsync("equeued_state")).LastOrDefault();
+                    queuedState.Queue = string.IsNullOrEmpty(queueString) ? queuedState.Queue : queueString;
+                }
+
+                var jobId = standbyJob.RecurringJobId;
+                if (standbyJob.IsAppendMachineNameToJobId)
+                {
+                    jobId = $"{standbyJob.RecurringJobId}_{standbyJob.MachineName}";
+                }
 
                 var cron = (await context.Request.GetFormValuesAsync("recurring_cron")).LastOrDefault();
                 var timeZone = Options.RecurringTimeZone ?? TimeZoneInfo.Local;

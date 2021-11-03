@@ -12,6 +12,7 @@
     string selectedCategory = this.SelectedCategory;
     StandbyMap jobMap = this.Map;
     JobKitOptions options = this.Options;
+    List<string> queues = this.Queues;
     Layout = new LayoutPage(Strings.Standby_Title);
     var availableJobs = jobMap.JobCollection.Where(x => x.Value.CategoryName == selectedCategory).Select(x => x.Value).ToArray();
 }
@@ -82,7 +83,12 @@
                                 <div class="queue-input">
                                     <div class=" input-group">
                                         <div class="input-group-addon">Queue</div>
-                                        <input type="text" name="equeued_state" class="form-control" />
+                                        <select name="equeued_state" class="form-control">
+                                            @foreach (var queue in queues)
+                                            {
+                                                <option value="@(queue)">@queue.ToUpper()</option>
+                                            }
+                                        </select>
                                     </div>
                                 </div>
                             }

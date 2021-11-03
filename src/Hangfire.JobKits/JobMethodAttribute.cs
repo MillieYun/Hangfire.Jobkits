@@ -38,5 +38,10 @@ namespace Hangfire.JobKits
         /// recurring job CRON. (default)
         /// </summary>
         public string RecurringJobCron { get; set; }
+
+        /// <summary>
+        /// Append MachineName on RecurringJobId
+        /// </summary>
+        public bool IsAppendMachineNameToJobId { get; set; }
     }
 }

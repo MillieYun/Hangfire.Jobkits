@@ -40,9 +40,9 @@ namespace Hangfire.JobKits.Worker
                 if (standbyJob.UseQueue)
                 {
                     var queueString = (await context.Request.GetFormValuesAsync("equeued_state")).LastOrDefault();
-                    queuedState.Queue = queueString;
+                    queuedState.Queue = !string.IsNullOrEmpty(queueString) ? queueString : queuedState.Queue;
                 }
-                
+
                 var jobId = context.GetBackgroundJobClient().Create(new Job(standbyJob.Method, parameters), queuedState);
                 
                 context.Response.StatusCode = 200;

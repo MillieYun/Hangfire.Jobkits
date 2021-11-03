@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
@@ -16,6 +17,8 @@ namespace Hangfire.JobKits.Worker
         public string RecurringJobCron { get; }
         public MethodInfo Method { get; }
         public string ActionName { get; }
+        public bool IsAppendMachineNameToJobId { get; }
+        public string MachineName { get => Environment.MachineName; }
 
         public StandbyJob(
             JobLauncherAttribute launcherAttribute, 
@@ -28,6 +31,7 @@ namespace Hangfire.JobKits.Worker
             Name = methodAttribute.Name;
             Description = methodAttribute.Description;
             UseQueue = methodAttribute.UseQueue;
+            IsAppendMachineNameToJobId = methodAttribute.IsAppendMachineNameToJobId;
 
             RecurringJobId = methodAttribute.RecurringJobId;
             RecurringJobCron = methodAttribute.RecurringJobCron ?? "0/30 * * * *";
